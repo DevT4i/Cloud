@@ -1,0 +1,1166 @@
+/*
+ * Author       : tailane.alves_sou
+ * Generated on : 01-Jun-2025 11:18:44
+ * Version      : 1.0
+ */
+ application "CCSMODAL"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "America/Sao_Paulo"
+ 	time format = "24-hr"
+ 	forms
+	{
+		form Entrega
+		{
+			success message = "Dados adicionados com sucesso!"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Data_e_Hora
+			(
+    			type = datetime
+				displayname = "Data e Hora"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			VE_CULO
+			(
+				type = picklist	
+				displayname = "VEÍCULO"
+				values  = Veiculo.ID
+    			displayformat = [Nome]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Motorista1
+			(
+				type = picklist	
+				displayname = "Motorista"
+				values  = Motorista1.ID
+    			displayformat = [" " + Nome.prefix + " " + Nome.first_name + " " + Nome.last_name + " " + Nome.suffix]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			ID_do_Ve_culo
+			(
+				type = picklist	
+				displayname = "Placa"
+				values  = Veiculo.ID
+    			displayformat = [Placa]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Despachado_em
+			(
+    			type = datetime
+				displayname = "Despachado em"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Entregue_em
+			(
+    			type = datetime
+				displayname = "Entregue em"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Carga
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Enviar"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Restaurar"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Atualizar"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancelar"
+					)
+				}
+			}
+		}
+		form Motorista1
+		{
+			displayname = "Motorista"
+			success message = "Dados adicionados com sucesso!"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Nome
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="Nome"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Sobrenome"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			must have Contato
+			(
+    			type = phonenumber
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			must have Email
+			(
+    			type = email
+				maxchar = 80
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+			must have Endere_o
+			(
+    			type = address
+				displayname = "Endereço"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_1
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Endereço"
+     			) 
+     			address_line_2
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Numero"
+     			) 
+     			district_city
+     			(
+	     			  type = district_city
+	     			  displayname = "Cidade"
+     			) 
+     			state_province
+     			(
+	     			  type = state_province
+	     			  displayname = "Estado"
+     			) 
+     			postal_Code
+     			(
+	     			  type = postal_Code
+	     			  displayname = "CEP"
+     			) 
+     			country
+     			(
+	     			  type = country
+	     			  displayname = "País"
+	     			 visibility = false
+     			) 
+     			latitude
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+				personal data = true
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Enviar"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Restaurar"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Atualizar"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancelar"
+					)
+				}
+			}
+		}
+		form Produto1
+		{
+			displayname = "Produto"
+			success message = "Dados adicionados com sucesso!"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Nome
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Quantidade_Disponivel
+			(
+				type = number
+				displayname = "Quantidade Disponivel"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Enviar"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Restaurar"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Atualizar"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancelar"
+					)
+				}
+			}
+		}
+		form Veiculo
+		{
+			success message = "Dados adicionados com sucesso!"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Nome
+			(
+    			type = text
+				displayname = "Modelo"
+				maxchar = 20
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Placa
+			(
+    			type = text
+				maxchar = 6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Enviar"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Restaurar"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Atualizar"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancelar"
+					)
+				}
+			}
+		}
+	}
+	reports
+	{
+		default list PRODUTOS_Report
+		{
+			displayName = "PRODUTOS Relatório"
+			show all rows from Produto1    
+			(
+				Nome
+				Quantidade_Disponivel as "Quantidade Disponivel"
+			)
+		}
+		default list VE_CULO_Report
+		{
+			displayName = "VEÍCULO Relatório"
+			show all rows from Veiculo    
+			(
+				Nome as "Modelo"
+				Placa
+			)
+		}
+		default list MOTORISTA_Report
+		{
+			displayName = "MOTORISTA Relatório"
+			show all rows from Motorista1    
+			(
+				Nome 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Contato
+				(
+					displayformat = plainnumber 
+					linktodial = enable
+				)
+				Email
+				Endere_o  as "Endereço"
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+			)
+		}
+		default list ENTREGA_Report
+		{
+			displayName = "ENTREGA Relatório"
+			show all rows from Entrega    
+			(
+				Data_e_Hora as "Data e Hora"
+				VE_CULO as "VEÍCULO"
+				ID_do_Ve_culo as "Placa"
+				Status
+				Despachado_em as "Despachado em"
+				Entregue_em as "Entregue em"
+				Motorista1 as "Motorista"
+				Carga
+				custom action "Despachado"
+				(
+	  			workflow = Despachado
+				show action in edit record menu = true
+				column header = "Despachado"
+				)
+				custom action "Entregue"
+				(
+	  			workflow = Entregue
+				show action in edit record menu = true
+				column header = "Entregue"
+				)
+			)
+		}
+	}
+
+
+		 functions
+		 {
+			 Deluge
+			 {
+				 void despachado(Entrega request)
+                 {
+                 	request.Status="Despachado";
+                 	request.Despachado_em=zoho.currenttime;
+                 	sendmail
+                 	[
+                 		from :zoho.adminuserid
+                 		to :zoho.adminuserid
+                 		subject :"Carga Despachada"
+                 		message :"Pedido Despachado com Sucesso!"
+                 	]
+                 }
+				 void Entregue(Entrega request)
+                 {
+                 	request.Status="Entregue";
+                 	request.Entregue_em=zoho.currenttime;
+                 	sendmail
+                 	[
+                 		from :zoho.adminuserid
+                 		to :zoho.adminuserid
+                 		subject :"Entregue"
+                 		message :"Carga entregue com sucesso!"
+                 	]
+                 }
+			 }
+		 }
+		workflow
+		{
+		form
+		{
+			Preencher_Status as "Preencher Status"
+			{
+				type =  form
+				form = Entrega
+				record event = on add
+
+				on load
+				{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Status = "Aguardando";
+						)
+					}
+				}
+
+			}
+			Notificar_Adm as "Notificar Adm"
+			{
+				type =  form
+				form = Entrega
+				record event = on add
+
+				on success
+				{
+					actions 
+					{
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : "zoho.adminuserid"
+							subject : "Nova Entrega"
+							message : "<div>Uma nova entrega foi criada:<br></div><div><br></div><div>${Carga}<br></div>"
+						)
+					}
+					actions 
+					{
+						success message "Entrega criada com sucesso!";
+					}
+				}
+
+			}
+		}
+
+
+
+
+
+
+		functions
+		{
+			Despachado as "Despachado"
+			{
+				type =  functions
+				form = Entrega
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.despachado(Entrega);
+					}
+				}
+			}
+			Entregue as "Entregue"
+			{
+				type =  functions
+				form = Entrega
+				execution type = for each record	
+				on start
+				{
+					actions 
+					{
+						thisapp.Entregue(Entrega);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Developer"
+			{
+				name = "Developer"
+				type = Developer
+				permissions = {Chat:false, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Developer Profile\n"
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Customer"
+			{
+				name = "Customer"
+				type = Customer_Portal
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This is the default profile having only add and view permission.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+
+	web
+	{
+		forms
+		{
+			form Entrega
+			{
+				label placement = left
+			}
+			form Motorista1
+			{
+				label placement = left
+			}
+			form Produto1
+			{
+				label placement = left
+			}
+			form Veiculo
+			{
+				label placement = left
+			}
+		}
+		reports
+		{
+			report PRODUTOS_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Nome
+								Quantidade_Disponivel as "Quantidade Disponivel"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Nome
+								Quantidade_Disponivel as "Quantidade Disponivel"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report VE_CULO_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Nome as "Modelo"
+								Placa
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Nome as "Modelo"
+								Placa
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report MOTORISTA_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Nome
+								Contato
+								Email
+								Endere_o as "Endereço"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Nome
+								Contato
+								Email
+								Endere_o as "Endereço"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			report ENTREGA_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								Data_e_Hora as "Data e Hora"
+								VE_CULO as "VEÍCULO"
+								ID_do_Ve_culo as "Placa"
+								Status
+								Despachado_em as "Despachado em"
+								Entregue_em as "Entregue em"
+								Motorista1 as "Motorista"
+								Carga
+								"Despachado"
+								"Entregue"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							"Despachado"
+							"Entregue"
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Delete   	   
+							Duplicate   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								Data_e_Hora as "Data e Hora"
+								VE_CULO as "VEÍCULO"
+								ID_do_Ve_culo as "Placa"
+								Status
+								Despachado_em as "Despachado em"
+								Entregue_em as "Entregue em"
+								Motorista1 as "Motorista"
+								Carga
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		menu
+		{
+			space Space
+			{
+				displayname = "Space"
+				icon = "objects-spaceship"
+
+				section PRODUTOS
+				{
+					displayname = "PRODUTOS"
+					icon = "tech-desktop"
+					form  Produto1
+					{
+						icon = "tech-desktop"
+					}
+					report PRODUTOS_Report
+					{
+						icon = "tech-desktop"
+					}
+				}
+				section App_Preferences
+				{
+					displayname = "App Preferences"
+					icon = "design-app"
+					systemcomponent
+					{
+						type = localization
+						displayname = "Language Selection"
+						icon = "education-language"
+					}
+					systemcomponent
+					{
+						type = connection
+						displayname = "Connection"
+						icon = "tech-2-connection"
+					}
+				}
+				section Approvals
+				{
+					displayname = "Approvals"
+					icon = "ui-2-hourglass"
+					systemcomponent
+					{
+						type = approval
+						approval status = pending
+						displayname = "Pending Tasks"
+						icon = "ui-2-hourglass"
+					}
+					systemcomponent
+					{
+						type = approval
+						approval status = completed
+						displayname = "Completed Tasks"
+						icon = "design-todo"
+					}
+				}
+				section SharedAnalytics_Section
+				{
+					type = shared_user_report_section
+					displayname = "Reports"
+					icon = "business-chart-bar-33"
+				}
+				section VE_CULO
+				{
+					displayname = "VEÍCULO"
+					icon = "tech-desktop"
+					form  Veiculo
+					{
+						icon = "tech-desktop"
+					}
+					report VE_CULO_Report
+					{
+						icon = "tech-desktop"
+					}
+				}
+				section MOTORISTA
+				{
+					displayname = "MOTORISTA"
+					icon = "tech-desktop"
+					form  Motorista1
+					{
+						icon = "tech-desktop"
+					}
+					report MOTORISTA_Report
+					{
+						icon = "tech-desktop"
+					}
+				}
+				section ENTREGA
+				{
+					displayname = "ENTREGA"
+					icon = "tech-desktop"
+					form  Entrega
+					{
+						icon = "tech-desktop"
+					}
+					report ENTREGA_Report
+					{
+						icon = "tech-desktop"
+					}
+				}
+			}
+			preference
+			{
+				icon
+				{
+					style = outline
+				}
+			}
+		}
+		customize
+		{
+			new theme = 8
+			font = "lato"
+			color options
+			{
+				color = blue
+			}
+			logo
+			{
+				preference = "app_icon"
+				placement = "left"
+			}
+		}
+	}
+	phone
+	{
+		forms
+		{
+			form Entrega
+			{
+				label placement = auto
+			}
+			form Motorista1
+			{
+				label placement = auto
+			}
+			form Produto1
+			{
+				label placement = auto
+			}
+			form Veiculo
+			{
+				label placement = auto
+			}
+		}
+		customize
+		{
+			layout = slidingpane
+			font = "default"
+			style = "1"
+			color options
+			{
+				color = darkgrey
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	tablet
+	{
+		forms
+		{
+			form Entrega
+			{
+				label placement = auto
+			}
+			form Motorista1
+			{
+				label placement = auto
+			}
+			form Produto1
+			{
+				label placement = auto
+			}
+			form Veiculo
+			{
+				label placement = auto
+			}
+		}
+		customize
+		{
+			layout = slidingpane
+			font = "default"
+			style = "1"
+			color options
+			{
+				color = darkgrey
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	translation
+{
+{"Language_Settings":{"LANGAGUE_WITH_LOGIN":"browser"}}
+}
+}
